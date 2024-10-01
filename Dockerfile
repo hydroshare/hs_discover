@@ -6,25 +6,9 @@ FROM node:14.14.0 as node-build
 ARG VUE_APP_BUCKET_URL_PUBLIC_PATH
 ARG VUE_APP_HYDROSHARE_URL
 
-ADD . /hydroshare
+ADD . /
 
-WORKDIR /hydroshare/hs_discover
+WORKDIR /
 
-RUN rm -rf static templates && \
-    mkdir static templates && \
-    mkdir templates/hs_discover && \
-    mkdir static/js && \
-    mkdir static/css && \
-    npm install && \
-    npm run build && \
-    mkdir -p static/js && \
-    mkdir -p static/css && \
-    cp -rp templates/hs_discover/js static/ && \
-    cp -rp templates/hs_discover/css static/ && \
-    cp -p templates/hs_discover/map.js static/js/ && \
-    echo "----------------js--------------------" && \
-    ls -l static/js && \
-    echo "--------------------------------------" && \
-    echo "----------------css-------------------" && \
-    ls -l static/css && \
-    echo "--------------------------------------"
+RUN npm install && \
+    npm run build
