@@ -394,7 +394,8 @@ export default {
         this.typeFilter = [];
         this.availabilityFilter = [];
       }
-      axios.get('/discoverapi/', {
+      const hydroshareUrl = process.env.VUE_APP_HYDROSHARE_URL;
+      axios.get(`${hydroshareUrl}/discoverapi/`, {
         params: {
           q: this.searchtext,
           sort: this.sortingBy,
