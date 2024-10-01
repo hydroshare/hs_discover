@@ -3,7 +3,8 @@ name: Deploy static content to Pages
 
 on:
   push:
-    tags: 'gh-pages*'
+    branches:
+      - main
   workflow_dispatch:
 
 # Sets the GITHUB_TOKEN permissions to allow deployment to GitHub Pages
@@ -53,7 +54,7 @@ jobs:
         uses: actions/upload-pages-artifact@v1
         with:
           # Upload dist repository
-          path: './dist'
+          path: './templates/hs_discover'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
