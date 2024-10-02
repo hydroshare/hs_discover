@@ -41,8 +41,8 @@ jobs:
       - name: create env file
         run: |
           touch .env
-          echo VITE_APP_API_URL=${{ secrets.VUE_APP_BUCKET_URL_PUBLIC_PATH }} >> .env
-          echo VITE_APP_FULL_URL=${{ secrets.VUE_APP_HYDROSHARE_URL }} >> .env
+          echo VUE_APP_BUCKET_URL_PUBLIC_PATH=${{ secrets.VUE_APP_BUCKET_URL_PUBLIC_PATH }} >> .env
+          echo VUE_APP_HYDROSHARE_URL=${{ secrets.VUE_APP_HYDROSHARE_URL }} >> .env
           cp .env ../.env
       - name: Install dependencies
         run: npm install
