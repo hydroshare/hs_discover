@@ -394,8 +394,8 @@ export default {
         this.typeFilter = [];
         this.availabilityFilter = [];
       }
-      // const hydroshareUrl = process.env.VUE_APP_HYDROSHARE_URL;
-      // axios.get(`${hydroshareUrl}/discoverapi/`, {
+      // here we assume that this app will be embedded within HS django page
+      // Otherwise, we need to use the full URL to HydroShare
       axios.get('/discoverapi/', {
         params: {
           q: this.searchtext,

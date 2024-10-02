@@ -5,9 +5,15 @@ env:
   REGISTRY_HOSTNAME: docker.io
   REPOSITORY: ${{ secrets.DOCKER_REPOSITORY }}
 
-on: 
-  - push
-  - workflow_dispatch
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+defaults:
+  run:
+    working-directory: '.'
 
 jobs:
   setup-build-publish-deploy:
@@ -24,6 +30,10 @@ jobs:
           IMAGE="${REPOSITORY}/hs_discover"
           echo ::set-output name=tagged_image::${IMAGE}:${TAG}
           echo ::set-output name=tag::${TAG}
+      - name: create env file
+        run: |
+          touch .env
+          echo VUE_APP_BUCKET_URL_PUBLIC_PATH=${{ secrets.VUE_APP_BUCKET_URL_PUBLIC_PATH }} >> .env
       - name: Set up Docker Buildx
         id: buildx
         uses: docker/setup-buildx-action@v3
